@@ -2,12 +2,13 @@ package hello;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
 
-    @RequestMapping("/user")
+    @RequestMapping(value="/user", method = RequestMethod.POST)
     public UserInfo user() {
     	// Añadir parámetros o conseguir el usuario por algún otro medio (GET, POST y cosas de esas)
     	// Conectarse a la Base de Datos y buscar el usuario
