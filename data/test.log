@@ -1,20 +1,13 @@
 /*C1*/SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 COMMIT
-/*C2*/SET SCHEMA PUBLIC
-CREATE TABLE VOTERS (\u000aNOMBRE VARCHAR(200),\u000aEMAIL VARCHAR(200),\u000aNIF VARCHAR(9) NOT NULL, \u000aCOLEGIO_ELECTORAL VARCHAR(200),\u000aCONTRASE\u00d1A VARCHAR(25)\u000a)
-DROP TABLE VOTERS
-CREATE TABLE VOTERS (\u000aNOMBRE VARCHAR(200),\u000aEMAIL VARCHAR(200),\u000aNIF VARCHAR(9) PRIMARY KEY, \u000aCOLEGIO_ELECTORAL VARCHAR(200),\u000aCONTRASE\u00d1A VARCHAR(25)\u000a)
-INSERT INTO VOTERS VALUES('Pepe Mart\u00ednez P\u00e9rez','pperez@yahoo.org','45878987A','IES La Er\u00eda','123456')
-COMMIT
-INSERT INTO VOTERS VALUES('Juan Carlos Reyes','reyes@hotmail.es','46123589D','Colegio Nazaret','142536')
-COMMIT
-INSERT INTO VOTERS VALUES('Pablo Rodr\u00edguez L\u00f3pez','plopez@gmail.org','65891234L','Leopoldo Alas Clar\u00edn','475869')
-COMMIT
-INSERT INTO VOTERS VALUES('Jos\u00e9 Mar\u00eda Batalla','jmb@yahoo.org','97485312W','Dr Fleming','999888')
-COMMIT
-INSERT INTO VOTERS VALUES('Carlos Prieto Vega','prvega@gmail.es','78452369F','La Gesta II','000222')
-COMMIT
-INSERT INTO VOTERS VALUES('Mario Perez Torres','mptorres@yahoo.org','71729584H','Santa Mar\u00eda del Naranco','252525')
-COMMIT
+/*C3*/SET SCHEMA PUBLIC
+drop table TUsers if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table TUsers (id bigint not null, NIF varchar(255), codigoMesa integer not null, contrase\u00f1a varchar(255), email varchar(255), name varchar(255), primary key (id))
+/*C4*/SET SCHEMA PUBLIC
+drop table TUsers if exists
+drop sequence hibernate_sequence
+create sequence hibernate_sequence start with 1 increment by 1
+create table TUsers (id bigint not null, NIF varchar(255), codigoMesa integer not null, contrase\u00f1a varchar(255), email varchar(255), name varchar(255), primary key (id))
 DISCONNECT

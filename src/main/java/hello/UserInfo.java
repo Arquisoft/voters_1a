@@ -2,41 +2,114 @@ package hello;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TUsers")
 
 public class UserInfo {
 	
 	private static final Logger log = LoggerFactory.getLogger(UserInfo.class);
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String name;
+	private String NIF;
+	private String email;
+	private int codigoMesa;
+	private String contraseña;
 
-    private final String name, email;
-    private final Integer age, votingCode;
+	UserInfo() {
 
-    public UserInfo(String name, Integer age, String email, Integer votingCode) {
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.votingCode = votingCode;
-        log.info("Created " + this.toString());
-    }
+	}
 
-    public String getName() {
-        return name;
-    }
+	public UserInfo(String name, String NIF, String email, int codigoMesa,String contraseña) {
+		this.setName(name);
+		this.setNIF(NIF);
+		this.email = email;
+		this.setCodigoMesa(codigoMesa);
+		this.setContraseña(contraseña);
+	}
 
-    public Integer getAge() {
-        return age;
-    }
-    
-    public String getEmail() {
-    	return this.email;
-    }
-    
-    public int votingCode() {
-    	return this.votingCode;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getNIF() {
+		return NIF;
+	}
+
+	public void setNIF(String nIF) {
+		NIF = nIF;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getCodigoMesa() {
+		return codigoMesa;
+	}
+
+	public void setCodigoMesa(int codigoMesa) {
+		this.codigoMesa = codigoMesa;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((NIF == null) ? 0 : NIF.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserInfo other = (UserInfo) obj;
+		if (NIF == null) {
+			if (other.NIF != null)
+				return false;
+		} else if (!NIF.equals(other.NIF))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
-		return String.format("UserInfo [name=%s, email=%s, age=%s, votingCode=%s]",
-				name, email, age, votingCode);
+		return "User [id=" + id + ", name=" + name + ", NIF=" + NIF + ", email=" + email + ", codigoMesa=" + codigoMesa
+				+ ", contraseña=" + contraseña + "]";
 	}
+
+	public Long getId(){
+		return id;
+	}
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
+
+    
 }
