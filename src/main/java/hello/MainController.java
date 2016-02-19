@@ -19,12 +19,12 @@ public class MainController {
 
     @RequestMapping(value="/user", method = RequestMethod.POST)
     @ResponseBody
-    public String user(){//@RequestBody String email,@RequestBody String password) {
-        UserInfo result = buscarTodo();
+    public UserInfo user(@RequestBody Peticion peticion) {
+        UserInfo result = buscarUsuario(peticion.getEmail(), peticion.getPassword());
         
         if (result != null)
-        	return "Espartaco";
-        return "No hay nadie";
+        	return result;
+        return null;
     }
 
     private UserInfo buscarUsuario(String email, String password) {
