@@ -18,7 +18,7 @@ public class UserInfo {
 	@GeneratedValue
 	private Long id;
 	private String name;
-	private String NIF;
+	private String nif;
 	private String email;
 	private int codigoMesa;
 	private String contraseña;
@@ -44,11 +44,14 @@ public class UserInfo {
 	}
 
 	public String getNIF() {
-		return NIF;
+		return nif;
 	}
 
 	public void setNIF(String nIF) {
-		NIF = nIF;
+		if (nifValido(nIF))
+			this.nif = nIF;
+		else log.error("Formato de NIF incorrecto");
+		
 	}
 
 	public String getEmail() {
@@ -56,7 +59,9 @@ public class UserInfo {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		if (correoValido(email))
+			this.email = email;
+		else log.error("Formato de correo no válido");
 	}
 
 	public int getCodigoMesa() {
@@ -71,7 +76,7 @@ public class UserInfo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((NIF == null) ? 0 : NIF.hashCode());
+		result = prime * result + ((nif == null) ? 0 : nif.hashCode());
 		return result;
 	}
 
@@ -84,17 +89,17 @@ public class UserInfo {
 		if (getClass() != obj.getClass())
 			return false;
 		UserInfo other = (UserInfo) obj;
-		if (NIF == null) {
-			if (other.NIF != null)
+		if (nif == null) {
+			if (other.nif != null)
 				return false;
-		} else if (!NIF.equals(other.NIF))
+		} else if (!nif.equals(other.nif))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", NIF=" + NIF + ", email=" + email + ", codigoMesa=" + codigoMesa
+		return "User [id=" + id + ", name=" + name + ", NIF=" + nif + ", email=" + email + ", codigoMesa=" + codigoMesa
 				+ ", contraseña=" + contraseña + "]";
 	}
 
@@ -108,6 +113,19 @@ public class UserInfo {
 
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
+	}
+	
+	public boolean nifValido(String nif){
+		if (nif != null && !nif.isEmpty())
+			if (nif.length() == 9 && Character.isLetter(nif.charAt(8)))
+				return true;
+		return false;
+	}
+	
+	public boolean correoValido(String correo){
+		if (correo.contains("@") && !correo.startsWith("@") && !correo.endsWith("@"))
+			return true;
+		else return false;
 	}
 
 
