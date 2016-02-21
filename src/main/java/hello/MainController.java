@@ -26,7 +26,7 @@ public class MainController {
         throw new UsuarioNoEncontrado();
     }
 
-    private UserInfo buscarUsuario(String email, String password) {
+    public UserInfo buscarUsuario(String email, String password) {
     	System.out.println("Iniciando búsqueda de usuario...");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("voters");
 		EntityManager em = emf.createEntityManager();
