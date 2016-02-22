@@ -49,8 +49,7 @@ public class MainController {
 
 	@RequestMapping("/")
     public String landing() {
-    	// Vete a saber para qué sirve esto
-    	// No lo toco, por si acaso
+    	// Devolver una cadena informativa
         return "User Management Service";
     }
 }
